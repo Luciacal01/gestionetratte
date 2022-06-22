@@ -2,6 +2,8 @@ package it.prova.gestionetratte.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,12 @@ public class AirbusServiceImpl implements AirbusService {
 
 	@Override
 	public List<Airbus> listAllElements() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Airbus>) airbusRepository.findAll();
 	}
 
 	@Override
 	public List<Airbus> listAllElementsEager() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Airbus>) airbusRepository.findAllEager();
 	}
 
 	@Override
@@ -45,9 +45,9 @@ public class AirbusServiceImpl implements AirbusService {
 	}
 
 	@Override
+	@Transactional
 	public Airbus inserisciNuovo(Airbus airbusInstance) {
-		// TODO Auto-generated method stub
-		return null;
+		return airbusRepository.save(airbusInstance);
 	}
 
 	@Override
