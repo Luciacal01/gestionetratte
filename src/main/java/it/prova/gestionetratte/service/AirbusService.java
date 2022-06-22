@@ -20,4 +20,6 @@ public interface AirbusService {
 	void rimuovi(Airbus airbusInstance);
 	
 	List<Airbus> findByExample(Airbus example);
+	
+	Airbus cercaByCodiceEDescrizione(String codice, String descrizione);
 }
