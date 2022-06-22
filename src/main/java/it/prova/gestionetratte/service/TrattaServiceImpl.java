@@ -18,8 +18,9 @@ public class TrattaServiceImpl implements TrattaService {
 
 	@Override
 	public List<Tratta> listAllElements(boolean eager) {
-		// TODO Auto-generated method stub
-		return null;
+		if(eager)
+			return trattaRepository.findAllEaager();
+		return (List<Tratta>) trattaRepository.findAll();
 	}
 
 	@Override
