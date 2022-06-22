@@ -37,6 +37,7 @@ public class AirbusServiceImpl implements AirbusService {
 	}
 
 	@Override
+	@Transactional
 	public Airbus aggiorna(Airbus airbusInstance) {
 		return airbusRepository.save(airbusInstance);
 	}
@@ -48,8 +49,9 @@ public class AirbusServiceImpl implements AirbusService {
 	}
 
 	@Override
+	@Transactional
 	public void rimuovi(Airbus airbusInstance) {
-		// TODO Auto-generated method stub
+		airbusRepository.delete(airbusInstance);
 		
 	}
 
