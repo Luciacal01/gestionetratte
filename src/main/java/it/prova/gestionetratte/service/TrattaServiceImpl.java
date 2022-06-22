@@ -48,7 +48,7 @@ public class TrattaServiceImpl implements TrattaService {
 	@Override
 	@Transactional
 	public void rimuovi(Tratta trattaInstance) {
-		// TODO Auto-generated method stub
+		trattaRepository.delete(trattaInstance);
 		
 	}
 
