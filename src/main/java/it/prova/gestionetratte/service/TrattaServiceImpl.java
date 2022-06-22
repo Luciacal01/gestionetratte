@@ -25,17 +25,16 @@ public class TrattaServiceImpl implements TrattaService {
 
 	@Override
 	public Tratta caricaSingoloElemento(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return trattaRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Tratta caricaSingoloElementoEager(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return trattaRepository.findSingleTrattaEager(id);
 	}
 
 	@Override
+	@Transactional
 	public Tratta aggiorna(Tratta trattaInstance) {
 		// TODO Auto-generated method stub
 		return null;
@@ -48,6 +47,7 @@ public class TrattaServiceImpl implements TrattaService {
 	}
 
 	@Override
+	@Transactional
 	public void rimuovi(Tratta trattaInstance) {
 		// TODO Auto-generated method stub
 		
