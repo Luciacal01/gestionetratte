@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.prova.gestionetratte.dto.AirbusDTO;
 import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.service.AirbusService;
+import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 
 @RestController
@@ -36,5 +38,15 @@ public class AirbusController {
 		
 		Airbus airbusInstance= airbusService.inserisciNuovo(airbusInput.buildAirbusModel());
 		return AirbusDTO.buildAirbusDTOFromModel(airbusInstance, false);
+	}
+	
+	@GetMapping("/{id}")
+	public AirbusDTO findById(@PathVariable(value = "id", required = true) long id) {
+		Airbus airbus = airbusService.caricaSingoloElementoConFilms(id);
+
+		if (airbus == null)
+			throw new AirbusNotFoundException("Airbus not found con id: " + id);
+
+		return AirbusDTO.buildAirbusDTOFromModel(airbus, true);
 	}
 }
