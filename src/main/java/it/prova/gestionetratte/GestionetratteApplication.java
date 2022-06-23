@@ -50,7 +50,7 @@ public class GestionetratteApplication implements CommandLineRunner{
 		Airbus airbus2= airbusService.cercaByCodiceEDescrizione(codice2, descrizione2);
 		
 		if(airbus2== null) {
-			airbus2= new Airbus(codice, descrizione, LocalDate.of(2022, 02, 18), 430);
+			airbus2= new Airbus(codice2, descrizione2, LocalDate.of(2022, 02, 18), 430);
 			airbusService.inserisciNuovo(airbus2);
 		}
 		
