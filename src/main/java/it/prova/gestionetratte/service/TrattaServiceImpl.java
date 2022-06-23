@@ -1,5 +1,6 @@
 package it.prova.gestionetratte.service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.prova.gestionetratte.dto.TratteDTO;
+import it.prova.gestionetratte.model.Stato;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.TrattaRepository;
 
@@ -60,6 +63,13 @@ public class TrattaServiceImpl implements TrattaService {
 	@Override
 	public List<Tratta> cercaByCodiceEDescrizione(String codice, String descrizione) {
 		return trattaRepository.findByCodiceAndDescrizione(codice, descrizione);
+	}
+
+	@Override
+	@Transactional
+	public void concludiTratte() {
+		trattaRepository.annullaTratta(LocalTime.now());
+		
 	}
 
 }
